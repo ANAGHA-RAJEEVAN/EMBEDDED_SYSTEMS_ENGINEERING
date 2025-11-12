@@ -12,9 +12,9 @@
 
 int main ()
 {
-	uint16_t chip_id, dig_T1, dig_T2;
+	uint16_t chip_id, dig_T1;
 	uint32_t raw_temp,MSB,LSB,XLSB;
-	int16_t dig_T3;
+	int16_t dig_T3, dig_T2;
 	float var1,var2, temp,temp_final;
 	
 	
@@ -95,7 +95,7 @@ int main ()
 	// Pull SS high to deselect slave
 	PORTB |= (1 << PORTB2);
 	
-	dig_T2 = ((uint16_t)MSB << 8) | ((uint16_t)LSB); //dig_T2 value
+	dig_T2 = ((int16_t)MSB << 8) | ((int16_t)LSB); //dig_T2 value
 	
 	//Read dig_T3
 	PORTB &= ~ (1 << PORTB2);
