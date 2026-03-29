@@ -1,6 +1,4 @@
-Video Link => https://drive.google.com/file/d/1R6BVK5NVGkG9p4d46eZxpdQ2xzpOpozX/view?usp=sharing
-
-# STM32 GPIO Driver – Button Toggle & Non-Blocking LED Blink
+# STM32 GPIO Driver – Button Toggle & Alternate LED Blink using Non-Blocking delay
 
 ##  Overview
 This project demonstrates the implementation of a custom GPIO driver for the STM32F446 microcontroller. It integrates both onboard and external hardware using driver-level APIs without direct register manipulation in the application layer.
@@ -8,9 +6,7 @@ This project demonstrates the implementation of a custom GPIO driver for the STM
 The assignment includes:
 - Button-controlled LED toggle
 - Alternating external LED blinking using non-blocking delay
-
 ---
-
 ## Objectives
 
 ### Task 1: Button-Controlled LED
@@ -18,7 +14,7 @@ The assignment includes:
 - Onboard button (PC13) is configured as input (active LOW)
 - When button is pressed:
   - LED toggles state (ON ↔ OFF)
-- A small delay (~40 ms) is used for debouncing
+- A small delay (40 ms) is used for debouncing
 
 ---
 
@@ -28,8 +24,7 @@ The assignment includes:
   - PA7
 - LEDs blink alternately:
   - One ON while the other OFF
-  - ~250 ms per state (approximate)
-- Implemented using **non-blocking delay**
+  - 250 ms per state and they are implemented using **non-blocking delay**
 
 ---
 
@@ -59,13 +54,13 @@ The assignment includes:
 ---
 
 ### 2. Button Debouncing
-- Simple software delay used (~40 ms)
-- Prevents false triggering due to mechanical noise
+- Simple delay used (40 ms)
+- Debounce delay to ignore mechanical switch bounce
 
 ---
 
 ### 3. Non-Blocking Delay
-- Instead of using `delay_ms(250)`, a software counter is used:
+- Instead of using `delay_ms(250)`, a counter is used:
 
 ```c
 counter++;
@@ -75,3 +70,5 @@ if(counter >= 200000)
     gpio_toggle_pin(...);
     counter = 0;
 }
+```
+Video Link => https://drive.google.com/file/d/1R6BVK5NVGkG9p4d46eZxpdQ2xzpOpozX/view?usp=sharing
