@@ -16,14 +16,107 @@
  ******************************************************************************
  */
 
+#include <stdio.h>
 #include <stdint.h>
+#include "stm32f446xx.h"
+#include "stm32f446xx_gpio_driver.h"
 
-#if !defined(__SOFT_FP__) && defined(__ARM_FP)
-  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-#endif
+// Delay function
+void delay_ms(uint32_t ms)
+{
+    for(uint32_t i = 0; i < (ms * 1000); i++);
+}
 
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+
+/*---------------------------------------TASK-1 CONFIGURATION---------------------------------------*/
+
+    // LED CONFIGURATION (PA5)
+
+    gpio_handle_t gpio_led;
+
+    gpio_led.port = GPIO_PORTA;
+    gpio_led.config.pinNumber = PIN_5;
+    gpio_led.config.pinMode = PIN_MODE_OUTPUT;
+    gpio_led.config.pinSpeed = PIN_SPEED_FAST;
+    gpio_led.config.pinType = OUTPUT_PUSH_PULL;
+    gpio_led.config.pinPull = NO_PULL;
+
+    gpio_clock_control(GPIO_PORTA, ENABLE_FLAG);
+    gpio_init(&gpio_led);
+
+
+    // BUTTON CONFIGURATION (PC13)
+
+    gpio_handle_t gpio_button;
+
+    gpio_button.port = GPIO_PORTC;
+    gpio_button.config.pinNumber = PIN_13;
+    gpio_button.config.pinMode = PIN_MODE_INPUT;
+    gpio_button.config.pinSpeed = PIN_SPEED_FAST;
+    gpio_button.config.pinPull = PULL_UP;
+
+    gpio_clock_control(GPIO_PORTC, ENABLE_FLAG);
+    gpio_init(&gpio_button);
+
+
+/*---------------------------------------TASK-2 CONFIGURATION---------------------------------------*/
+
+    // LED CONFIGURATION (PA6)
+
+    gpio_handle_t gpio_ext_led1;
+
+    gpio_ext_led1.port = GPIO_PORTA;
+    gpio_ext_led1.config.pinNumber = PIN_6;
+    gpio_ext_led1.config.pinMode = PIN_MODE_OUTPUT;
+    gpio_ext_led1.config.pinSpeed = PIN_SPEED_FAST;
+    gpio_ext_led1.config.pinType = OUTPUT_PUSH_PULL;
+    gpio_ext_led1.config.pinPull = NO_PULL;
+
+    gpio_init(&gpio_ext_led1);
+
+
+    // LED CONFIGURATION (PA7)
+
+    gpio_handle_t gpio_ext_led2;
+
+    gpio_ext_led2.port = GPIO_PORTA;
+    gpio_ext_led2.config.pinNumber = PIN_7;
+    gpio_ext_led2.config.pinMode = PIN_MODE_OUTPUT;
+    gpio_ext_led2.config.pinSpeed = PIN_SPEED_FAST;
+    gpio_ext_led2.config.pinType = OUTPUT_PUSH_PULL;
+    gpio_ext_led2.config.pinPull = NO_PULL;
+
+    gpio_init(&gpio_ext_led2);
+
+
+    // Initial state for alternating LEDs
+    gpio_write_pin(GPIO_PORTA, PIN_6, PIN_SET);
+    gpio_write_pin(GPIO_PORTA, PIN_7, PIN_RESET);
+
+    uint32_t counter = 0;
+    while(1)
+    {
+    	/*---------------------------------------TASK-1 => LED TOGGLE ON BUTTON PRESS---------------------------------------*/
+
+        if(gpio_read_pin(GPIO_PORTC, PIN_13) == 0) //Check whethr switch is pressed or not
+        {
+            delay_ms(40);  // Debounce delay to ignore mechanical switch bounc
+            gpio_toggle_pin(GPIO_PORTA, PIN_5);
+        }
+
+        /*---------------------------------------TASK-2 => ALTERNATE BLINKING OF LED---------------------------------------*/
+
+        counter++;
+        //Here,nonblocking delay is given
+		if(counter >= 200000)
+		{
+			//Alternate blnking of leds
+			gpio_toggle_pin(GPIO_PORTA, PIN_6);
+			gpio_toggle_pin(GPIO_PORTA, PIN_7);
+
+			counter = 0;
+		}
+    }
 }
