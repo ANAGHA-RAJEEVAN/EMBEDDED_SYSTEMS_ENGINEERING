@@ -12,6 +12,12 @@ int main()
     printf("ENTER A WHOLE NUMBER : ");
     scanf("%d", &num);
 
+    if(num < 0)
+    {
+        printf("PLEASE ENTER A POSITIVE NUMBER.\n");
+        return 0;
+    }
+
     while(i <= num)      //Execute the loop until i is less than or equal tonum
     {
         factorial *= i;  //factorial = factorial * i
