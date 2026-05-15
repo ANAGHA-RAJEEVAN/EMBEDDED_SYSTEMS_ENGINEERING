@@ -17,7 +17,7 @@ int main()
 
     
     int mask = ((1 << n) - 1);  // Create a mask 
-    mask <<= position; // Shift the mask to the correct starting position
+    mask <<= position-n+1; // Shift the mask to the correct starting position
 
     // Toggling bits
     number ^= mask;
