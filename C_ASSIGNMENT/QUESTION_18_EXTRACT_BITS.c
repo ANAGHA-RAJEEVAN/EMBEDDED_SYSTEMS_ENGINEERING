@@ -19,7 +19,7 @@ int main()
     scanf("%d", &n);
 
     int mask = (1 << n)-1;  //mask
-    int result = (num >> position) & mask; // shift to right to extract the bits 
+    int result = (num >> (position-n+1)) & mask; // shift to right to extract the bits
 
     printf("Extracted bits: %d\n", result);
     return 0;
