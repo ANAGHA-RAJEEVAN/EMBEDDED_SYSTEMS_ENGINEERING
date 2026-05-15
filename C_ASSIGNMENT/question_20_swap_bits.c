@@ -25,16 +25,16 @@ int main()
     int mask = (1 << n) - 1; // mask
 
     // Extractingbits from num1 and num2
-    int num1bit = (num1 >> position) & mask;
-    int num2bit = (num2 >> position) & mask;
+    int num1bit = (num1 >> position-n+1) & mask;
+    int num2bit = (num2 >> position-n+1) & mask;
 
     // Clear n bits in both numbers
-    num1 &= ~(mask << position);
-    num2 &= ~(mask << position);
+    num1 &= ~(mask << position-n+1);
+    num2 &= ~(mask << position-n+1);
 
     // Swap the bits
-    num1 |= (num2bit << position);
-    num2 |= (num1bit << position);
+    num1 |= (num2bit << position-n+1);
+    num2 |= (num1bit << position-n+1);
 
     printf("After swapping \n");
     printf("First number: %d\n", num1);
