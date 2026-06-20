@@ -1,0 +1,4 @@
+../DRIVERS/Src/stm32f446xx_usart_driver.c:11:6:usart_clock_control	10
+../DRIVERS/Src/stm32f446xx_usart_driver.c:53:6:usart_init	6
+../DRIVERS/Src/stm32f446xx_usart_driver.c:93:6:usart_send_data	3
+../DRIVERS/Src/stm32f446xx_usart_driver.c:106:6:usart_receive_data	3

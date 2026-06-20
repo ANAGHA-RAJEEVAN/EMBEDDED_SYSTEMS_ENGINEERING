@@ -1,0 +1,5 @@
+../DRIVERS/Src/stm32f446xx_spi_driver.c:12:6:spi_clock_control	10
+../DRIVERS/Src/stm32f446xx_spi_driver.c:55:6:spi_init	4
+../DRIVERS/Src/stm32f446xx_spi_driver.c:103:6:spi_peripheral_control	2
+../DRIVERS/Src/stm32f446xx_spi_driver.c:116:6:spi_send_data	4
+../DRIVERS/Src/stm32f446xx_spi_driver.c:142:6:spi_receive_data	4

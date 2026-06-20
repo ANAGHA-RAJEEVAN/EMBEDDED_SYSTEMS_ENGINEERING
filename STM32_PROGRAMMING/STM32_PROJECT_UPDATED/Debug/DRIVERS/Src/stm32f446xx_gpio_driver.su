@@ -1,0 +1,14 @@
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:20:6:gpio_clock_control	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:101:6:gpio_init	24	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:147:6:gpio_deinit	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:190:9:gpio_read_pin	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:201:10:gpio_read_port	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:214:6:gpio_write_pin	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:229:6:gpio_write_port	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:241:6:gpio_toggle_pin	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:253:6:gpio_set_pin	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:265:6:gpio_clear_pin	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:278:6:gpio_set_direction	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:292:6:gpio_set_pull	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:307:6:gpio_set_output_type	16	static
+../DRIVERS/Src/stm32f446xx_gpio_driver.c:322:6:gpio_set_speed	16	static
